@@ -24,6 +24,7 @@ jobs:
         dst: gitee/lightnear
         dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
         dst_token: ${{ secrets.GITEE_TOKEN }}
+        static_list: 'dockerfiles,docker-bind,docker-detectron2,lightnear'
         force_update: true
 
   tmux_conf:
