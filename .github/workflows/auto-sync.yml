@@ -1,0 +1,56 @@
+name: sync2gitee
+
+on:
+  push:
+    # delete this item if you don't want to trigger this workflow when modify this repo
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    # UTC 01:00 -> CST (China) 09:00, see https://datetime360.com/cn/utc-cst-china-time/
+    - cron: '0 1 * * *'
+
+jobs:
+  lightnear:
+    name: lightnear
+    runs-on: ubuntu-latest
+    steps:
+    - name: Mirror the Github repos to Gitee.
+      uses: Yikun/hub-mirror-action@master
+      with:
+        src: github/lightnear
+        dst: gitee/lightnear
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+        dst_token: ${{ secrets.GITEE_TOKEN }}
+        force_update: true
+
+  tmux_conf:
+    name: tmux_conf
+    runs-on: ubuntu-latest
+    steps:
+    - name: Mirror the Github repos to Gitee.
+      uses: Yikun/hub-mirror-action@master
+      with:
+        src: github/gpakosz
+        dst: gitee/lightnear
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+        dst_token: ${{ secrets.GITEE_TOKEN }}
+        static_list: '.tmux'
+        mapping: '.tmux=>tmux.conf'
+        force_update: true
+
+  zsh-users:
+    name: zsh-users
+    runs-on: ubuntu-latest
+    steps:
+    - name: Mirror the Github repos to Gitee.
+      uses: Yikun/hub-mirror-action@master
+      with:
+        src: github/zsh-users
+        dst: gitee/lightnear
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+        dst_token: ${{ secrets.GITEE_TOKEN }}
+        static_list: 'zsh-syntax-highlighting,zsh-autosuggestions'
+        force_update: true
