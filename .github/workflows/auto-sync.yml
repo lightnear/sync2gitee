@@ -38,7 +38,7 @@ jobs:
         dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
         dst_token: ${{ secrets.GITEE_TOKEN }}
         static_list: '.tmux'
-        mapping: '.tmux=>tmux.conf'
+        mappings: '.tmux=>tmux.conf'
         force_update: true
 
   zsh-users:
