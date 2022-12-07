@@ -7,10 +7,12 @@ on:
       - main
     tags:
       - 'v*.*.*'
-  schedule:
+  # schedule:
     # * is a special character in YAML so you have to quote this string
     # UTC 01:00 -> CST (China) 09:00, see https://datetime360.com/cn/utc-cst-china-time/
-    - cron: '0 1 * * *'
+    # - cron: '0 1 * * *'
+  repository_dispatch:
+    types: [on-sync]
 
 jobs:
   lightnear:
