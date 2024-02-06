@@ -26,7 +26,7 @@ jobs:
         dst: gitee/lightnear
         dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
         dst_token: ${{ secrets.GITEE_TOKEN }}
-        static_list: 'dockerfiles,docker-bind,docker-detectron2,lightnear'
+        static_list: 'dockerfiles'
         force_update: true
 
   tmux_conf:
@@ -42,18 +42,4 @@ jobs:
         dst_token: ${{ secrets.GITEE_TOKEN }}
         static_list: '.tmux'
         mappings: '.tmux=>tmux.conf'
-        force_update: true
-
-  zsh-users:
-    name: zsh-users
-    runs-on: ubuntu-latest
-    steps:
-    - name: Mirror the Github repos to Gitee.
-      uses: Yikun/hub-mirror-action@master
-      with:
-        src: github/zsh-users
-        dst: gitee/lightnear
-        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-        dst_token: ${{ secrets.GITEE_TOKEN }}
-        static_list: 'zsh-syntax-highlighting,zsh-autosuggestions'
         force_update: true
