@@ -9,26 +9,12 @@ on:
       - 'v*.*.*'
   # schedule:
     # * is a special character in YAML so you have to quote this string
-    # UTC 01:00 -> CST (China) 09:00, see https://datetime360.com/cn/utc-cst-china-time/
-    # - cron: '0 1 * * *'
+    # UTC 23:00 -> CST (China) 07:00, see https://datetime360.com/cn/utc-cst-china-time/
+    # - cron: '0 23 * * *'
   repository_dispatch:
     types: [on-sync]
 
 jobs:
-  lightnear:
-    name: lightnear
-    runs-on: ubuntu-latest
-    steps:
-    - name: Mirror the Github repos to Gitee.
-      uses: Yikun/hub-mirror-action@master
-      with:
-        src: github/lightnear
-        dst: gitee/lightnear
-        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-        dst_token: ${{ secrets.GITEE_TOKEN }}
-        static_list: 'dockerfiles'
-        force_update: true
-
   tmux_conf:
     name: tmux_conf
     runs-on: ubuntu-latest
@@ -42,4 +28,32 @@ jobs:
         dst_token: ${{ secrets.GITEE_TOKEN }}
         static_list: '.tmux'
         mappings: '.tmux=>tmux.conf'
+        force_update: true
+
+  ohmyzsh:
+    name: ohmyzsh
+    runs-on: ubuntu-latest
+    steps:
+    - name: Mirror the Github repos to Gitee.
+      uses: Yikun/hub-mirror-action@master
+      with:
+        src: github/ohmyzsh
+        dst: gitee/lightnear
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+        dst_token: ${{ secrets.GITEE_TOKEN }}
+        static_list: 'ohmyzsh'
+        force_update: true
+
+  zsh-plugins:
+    name: zsh-plugins
+    runs-on: ubuntu-latest
+    steps:
+    - name: Mirror the Github repos to Gitee.
+      uses: Yikun/hub-mirror-action@master
+      with:
+        src: github/zsh-users
+        dst: gitee/lightnear
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+        dst_token: ${{ secrets.GITEE_TOKEN }}
+        static_list: 'zsh-autosuggestions,zsh-syntax-highlighting'
         force_update: true
